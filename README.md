@@ -32,11 +32,11 @@ A principal lógica de negócio implementada é o cálculo do progresso de um pr
 | Área | Tecnologia | Decisão Técnica e Justificativa |
 | :--- | :--- | :--- |
 | **Back-end Core** | Laravel 12 / PHP 8.2 | Uso da versão mais recente do Laravel para melhor desempenho e a nova estrutura de *bootstrapping* (`Application::configure`). |
-| **Front-end Core** | Vue.js 3 / Pinia | Vue 3 foi escolhido pela sua performance e composição de código. **Pinia** (confirmado no `package.json`) oferece uma solução de gerenciamento de estado mais leve e intuitiva. |
+| **Front-end Core** | Vue.js 3 / Pinia | Vue 3 foi escolhido pela sua performance e composição de código. **Pinia**  oferece uma solução de gerenciamento de estado mais leve e intuitiva. |
 | **Containerização** | Laravel Sail | Garante um ambiente de desenvolvimento isolado e consistente (PHP 8.2, MySQL 8.4) sem a necessidade de instalações locais. |
-| **Estilo** | Tailwind CSS / Vite | **Vite** (confirmado no `package.json`) para compilação rápida do Front-end e **Tailwind CSS** para aplicação rápida de estilos utilitários. |
+| **Estilo** | Tailwind CSS / Vite | **Vite**  para compilação rápida do Front-end e **Tailwind CSS** para aplicação rápida de estilos utilitários. |
 | **Lógica de Esforço** | Enums e Accessors | A lógica de cálculo de progresso é encapsulada em um Accessor no Model `Project`, garantindo que o valor seja sempre atualizado e eficiente. Um Enum pode ser usado para tipificar o campo `difficulty`. |
-| **Comunicação** | Axios / CORS | **Axios** (confirmado no `package.json`) para requisições HTTP. O CORS foi configurado explicitamente no `bootstrap/app.php` para garantir a comunicação entre o Front-end (Vite) e o Back-end (Sail). |
+| **Comunicação** | Axios / CORS | **Axios** para requisições HTTP. O CORS foi configurado explicitamente no `bootstrap/app.php` para garantir a comunicação entre o Front-end (Vite) e o Back-end (Sail). |
 
 ## 📐 Lógica de Progresso Ponderado
 
