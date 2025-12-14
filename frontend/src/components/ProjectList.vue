@@ -1,6 +1,8 @@
 <script setup>
 import { onMounted } from 'vue';
 import { useProjectStore } from '../stores/ProjectStore';
+import ProgressBar from './ProgressBar.vue';
+
 
 // Instancia o Store
 const store = useProjectStore();
@@ -10,16 +12,6 @@ onMounted(() => {
     store.fetchProjects();
 });
 
-// Funções para ações futuras (serão implementadas depois)
-const formatProgress = (project) => {
-    if (!project.tasks || project.tasks.length === 0) {
-        return '0%';
-    }
-    const completedTasks = project.tasks.filter(task => task.completed).length;
-    const totalTasks = project.tasks.length;
-    const percentage = Math.round((completedTasks / totalTasks) * 100);
-    return `${percentage}%`;
-};
 </script>
 
 <template>
@@ -49,13 +41,17 @@ const formatProgress = (project) => {
                         <p class="mt-2 text-gray-400 text-md">{{ project.description }}</p>
                     </div>
 
-                    <div class="text-right shrink-0">
-                        <span class="inline-block px-4 py-1 text-sm font-bold text-green-300 bg-green-900 rounded-full">
-                            Progresso: {{ formatProgress(project) }}
-                        </span>
+                    <div class="text-right shrink-0 min-w-[100px]">
+                        <p class="text-sm font-bold"
+                            :class="{ 'text-green-400': project.weighted_progress === 100, 'text-indigo-400': project.weighted_progress < 100 }">
+                            {{ project.weighted_progress }}% Concluído
+                        </p>
                     </div>
                 </div>
 
+                <div class="mt-4">
+                    <ProgressBar :percentage="project.weighted_progress" />
+                </div>
                 <div class="pt-4 mt-4 border-t border-gray-600">
                     <p class="text-sm italic text-indigo-400">Clique para ver e gerenciar tarefas...</p>
                 </div>

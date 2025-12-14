@@ -13,7 +13,10 @@ class ProjectController extends Controller
      */
     public function index(): JsonResponse
     {
-        $projects = Project::select('id', 'name')->get();
+        // NOVO: Carrega os projetos com a relação de tarefas (tasks) para
+        // permitir que o Accessor 'weighted_progress' funcione corretamente
+        // e evitar o problema de N+1 queries.
+        $projects = Project::with('tasks')->get();
 
         return response()->json($projects);
     }
